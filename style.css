@@ -1,0 +1,35 @@
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f8ff;
+      text-align: center;
+      padding: 50px;
+      background-image: url("https://www.istockphoto.com/photo/black-grunge-background-gm1070557648-286440711?utm_source=pixabay&utm_medium=affiliate&utm_campaign=sponsored_image&utm_content=srp_topbanner_media&utm_term=black");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    h1 {
+      color: #333399;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #333399;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #5555cc;
+    }
+  </style>
+</head>
+<body>
+  <h1>Nadpis stránky</h1>
+  <button>Klikni mě</button>
+</body>
+</html>

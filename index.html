@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <title>Moje Webová Stránka</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #222;
+      color: gray;
+      padding: 20px;
+    }
+
+    #uvod {
+      text-align: left;
+      padding-left: 20px;
+    }
+
+    #text {
+      color: white;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 10px;
+      background-color: crimson;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+
+    .pohyblivy-nadpis {
+      display: inline-block;
+      position: relative;
+      animation: pohyb 5s linear infinite;
+      font-size: 2em;
+      color: #444;
+    }
+
+    @keyframes pohyb {
+      0% { left: -100%; }
+      100% { left: 100%; }
+    }
+
+    .blikani {
+      animation: blikani 1s infinite alternate;
+      color: crimson;
+    }
+
+    @keyframes blikani {
+      from { opacity: 0.2; }
+      to { opacity: 1; }
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      gap: 20px;
+    }
+
+    nav a {
+      color: lightblue;
+      text-decoration: none;
+    }
+
+    footer {
+      margin-top: 30px;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1 class="blikani">Vítej na mém webu!</h1>
+
+  <h2>Počítadlo návštěv</h2>
+  <p>Počet návštěv této stránky: <span id="visitorCount">0</span></p>
+
+  <h2>Dnes je:</h2>
+  <p id="den">Načítání...</p>
+  <p>Dnešní datum je: <span id="currentDate"></span></p>
+
+  <nav>
+    <ul>
+      <li><a href="#uvod">Úvod</a></li>
+      <li><a href="#obrazek">Obrázek</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+  </nav>
+
+  <section id="uvod">
+    <p id="text">Toto je jednoduchý web vytvořený v HTML, CSS a JavaScriptu.</p>
+    <button onclick="zmenText()">Klikni na mě</button>
+  </section>
+
+  <section id="melodie">
+    <button onclick="prehrajZvuk()">Přehrát melodii</button>
+    <audio id="melodieZvuk" src="kun.mp3"></audio>
+  </section>
+
+  <section id="obrazek">
+    <h2>Obrázek pro Zuzanku</h2>
+    <img src="https://www.darky.cz/content/images/thumbs/0102140_nazehlovaci-obrazky-na-obleceni-jednorozci.jpeg" alt="Jednorožec" width="300" height="200">
+  </section>
+
+  <section id="kontakt">
+    <h2>Kontaktuj mě</h2>
+    <form onsubmit="return odesliFormular();">
+      <label for="jmeno">Jméno:</label>
+      <input type="text" id="jmeno" name="jmeno" required><br>
+
+      <label for="email">E-mail:</label>
+      <input type="email" id="email" name="email" required><br>
+
+      <label for="zprava">Zpráva:</label>
+      <textarea id="zprava" name="zprava" required></textarea><br>
+
+      <button type="submit">Odeslat</button>
+    </form>
+    <p id="odeslano"></p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Ondrova Webová Stránka</p>
+  </footer>
+
+  <script>
+    // počítadlo návštěv
+    let count = localStorage.getItem('visitCount') || 0;
+    count++;
+    localStorage.setItem('visitCount', count);
+    document.getElementById('visitorCount').textContent = count;
+
+    // datum
+    const today = new Date();
+    document.getElementById('currentDate').textContent = today.toLocaleDateString('cs-CZ');
+    document.getElementById('den').textContent = ["Neděle", "Pondělí", "Úterý", "Středa", "Čtvrtek", "Pátek", "Sobota"][today.getDay()];
+
+    // změna barvy textu
+    function zmenText() {
+      document.getElementById("text").style.color = "yellow";
+    }
+
+    // přehrání zvuku
+    function prehrajZvuk() {
+      document.getElementById("melodieZvuk").play();
+    }
+
+    // odeslání formuláře
+    function odesliFormular() {
+      document.getElementById("odeslano").textContent = "Zpráva byla odeslána!";
+      return false; // Zabrání klasickému odeslání formuláře
+    }
+  </script>
+
+</body>
+</html>
